@@ -1,0 +1,23 @@
+﻿# OS and editor files
+.DS_Store
+*.swp
+*~
+.vscode/
+
+# TuyaOpen IDE and AI-agent state
+**/.tuyaopen/
+**/.agents/
+**/.claude/
+**/.target_logging/
+**/.share/
+**/.miniapp.bak.*/
+
+# Local environment and secrets
+.env*
+
+# Generated logs and build output
+**/*.log
+
+# Build caches and local logs
+**/.build/
+**/monitor.log
