@@ -8,11 +8,30 @@ TuyaOpen firmware project for an ESP32 device, with a companion Tuya panel mini-
 - `projects/ESP32_TUYA/source/miniapp/` — optional Tuya panel mini-app.
 - `projects/ESP32_TUYA/source/embedded/dist/ESP32_TUYA_1.0.0/README.md` — prebuilt package flash command and verified flash/partition offsets.
 
-The TuyaOpen SDK and toolchain are installed separately. Do not copy the SDK repository into this project.
+## Folder layout
+
+The TuyaOpen SDK checkout belongs beside `projects/` in your local working folder. It is ignored by Git and is not part of this firmware repository:
+
+```text
+TuyaOpen-ESP32-Firmware/       # repository root
+├── .gitignore                 # keeps the local SDK out of GitHub
+├── README.md
+├── projects/
+│   └── ESP32_TUYA/
+│       ├── README.md
+│       ├── tuyaopen.project.ini
+│       └── source/
+│           ├── embedded/
+│           │   ├── include/   # firmware headers and product config
+│           │   ├── src/       # firmware implementation
+│           │   └── dist/      # generated firmware package
+│           └── miniapp/       # optional Tuya panel
+└── TuyaOpenSDK/               # local SDK clone; not published
+```
 
 ## Install TuyaOpen SDK and build tools
 
-Install TuyaOpen IDE/CLI and the ESP32 toolchain using the SDK's official instructions. If cloning the SDK manually, run this from the parent folder of this repository so the SDK is a sibling of the project folder:
+Install TuyaOpen IDE/CLI and the ESP32 toolchain using the SDK's official instructions. If cloning manually, open PowerShell at this repository root and run the command below. It creates `TuyaOpenSDK/` beside `projects/`; the root `.gitignore` keeps that local checkout out of the GitHub repository:
 
 ```powershell
 git clone --branch master --recurse-submodules https://github.com/tuya/TuyaOpen.git TuyaOpenSDK
@@ -97,4 +116,5 @@ See [`projects/ESP32_TUYA/source/miniapp/README.md`](projects/ESP32_TUYA/source/
 - Review whether the configured product PID should be public; it identifies a Tuya product even though it is not an authorization secret.
 - Add a project `LICENSE` and required TuyaOpen/third-party notices before public distribution. The SDK and components keep their own licenses.
 - Publish firmware binaries as GitHub Release assets if needed. The source repository ignores generated `.bin`, `.elf`, `.map`, and build-cache files by default.
+
 
